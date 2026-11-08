@@ -66,8 +66,6 @@ A *taxa* de fraude sobe de forma monotônica com o valor, mas a *perda em reais*
 ```
 projeto-sql-fraude/
 ├── README.md                          ← você está aqui
-├── orientacao_e_gabarito/
-│   └── orientacoes_do_case.docx       ← enunciado original do case
 ├── sql/
 │   ├── tabela_unificada_modelo.sql    ← ETL: constrói a abt_fraude
 │   └── queries_analiticas.sql         ← queries de todas as seções do relatório
@@ -110,8 +108,6 @@ Duas dimensões auxiliares (`dim_paises`, `dim_categorias`) enriquecem a anális
 **Convenção métrica:** taxa de fraude = `100 × AVG(fraude)` (funciona porque `fraude` é 0/1). Em segmentações, aplica-se **piso mínimo de 1.000 transações** por grupo para evitar taxas ruidosas em amostras pequenas — as queries usam `HAVING COUNT(*) >= 1000`.
 
 **Por que taxa e não contagem?** Como fraude é uma classe rara (5%), contar valores absolutos favorece automaticamente os segmentos mais volumosos. A taxa isola o efeito do atributo — permite comparar, por exemplo, o Brasil (grande e arriscado) com o Uruguai (pequeno e seguro) em pé de igualdade. A exceção deliberada é a análise de exposição financeira, em que o interesse é justamente o **valor absoluto em reais** de cada faixa — por isso taxa e reais são reportados lado a lado.
-
-**Nota de qualidade de dados:** a segmentação por faixa de valor usa um `CASE` com `ELSE` para a faixa mais alta; como `NULL < 500` não é verdadeiro em SQL, eventuais `valor_compra` nulos caem nessa faixa. Recomenda-se checar `COUNT(*) WHERE valor_compra IS NULL` e isolar nulos numa faixa própria antes de reportar a faixa "acima de R$ 500".
 
 ---
 

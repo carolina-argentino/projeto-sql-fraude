@@ -4,7 +4,7 @@ Análise SQL de **150.000 transações** para mapear fatores de risco de fraude,
 
 > **Insight central:** revisar apenas os **30% de maior score** captura **70% de toda a fraude** — reduz a carga operacional em dois terços sem perder cobertura.
 
-📄 Relatório completo (com gráficos e análise seção a seção): [`relatorios/relatorio_fraude.md`](relatorios/relatorio_fraude.md) · versão PDF: [`relatorios/relatorio_fraude.pdf`](relatorios/relatorio_fraude.pdf)
+📄 Relatório completo (com gráficos e análise seção a seção): [`relatorios/relatorio_fraude.md`](relatorios/relatorio_fraude.md)
 🎯 Apresentação executiva: [`apresentacao/insights_fraude.pptx`](apresentacao/insights_fraude.pptx)
 
 ---
@@ -71,7 +71,6 @@ projeto-sql-fraude/
 │   └── queries_analiticas.sql         ← queries de todas as seções do relatório
 ├── relatorios/
 │   ├── relatorio_fraude.md            ← relatório final (Markdown, versionado)
-│   └── relatorio_fraude.pdf           ← mesmo relatório em PDF
 ├── apresentacao/
 │   └── insights_fraude.pptx           ← deck executivo com os achados
 └── assets/                             ← gráficos usados no relatório

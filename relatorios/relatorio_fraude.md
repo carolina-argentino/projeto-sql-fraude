@@ -62,8 +62,6 @@ Olhar só a taxa é enganoso quando o objetivo é priorizar mitigação por real
 | acima de R$ 500 | ~2% | ~26% | R$ 144 mil | ~R$ 931 |
 
 > Percentuais de casos reconstruídos a partir das taxas de fraude arredondadas — servem para dimensionar a divergência entre casos e exposição, não como número contábil exato.
->
-> **Ressalva.** Como `NULL < 500` não é verdadeiro em SQL, eventuais `valor_compra` nulos caem na faixa "acima de R$ 500" — os números dessa faixa podem estar levemente contaminados. Diagnóstico completo dos nulos é a primeira checagem sugerida antes de fechar decisão sobre essa faixa (ver Seção 2).
 
 Três leituras práticas saem dessa tabela:
 

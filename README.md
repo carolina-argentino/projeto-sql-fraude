@@ -40,7 +40,6 @@ A *taxa* de fraude sobe de forma monotônica com o valor, mas a *perda em reais*
 | R$ 100–500 | ~14% | ~43% | R$ 233 mil | ~R$ 226 |
 | acima de R$ 500 | ~2% | ~26% | R$ 144 mil | ~R$ 931 |
 
-> Percentuais de casos reconstruídos a partir das taxas de fraude arredondadas — servem para dimensionar a divergência, não como número contábil exato.
 
 **Leitura para priorização:** a regra dura acima de R$ 500 acerta o segmento de maior *taxa* e maior *perda por caso*, mas em reais totais ele é o menor dos três. A faixa **R$ 100–500** é onde o score/modelo tem a maior alavancagem por real evitado (mais dinheiro, volume grande demais para revisar tudo na mão). E a faixa de baixo ticket pede automação barata — vale investigar se essas microfraudes antecedem compras grandes do mesmo cartão (padrão de *card testing*).
 

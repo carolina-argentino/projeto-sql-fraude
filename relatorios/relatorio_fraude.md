@@ -29,8 +29,6 @@ O objetivo é entender onde a fraude se concentra e avaliar se o modelo de score
 
 Como a fraude é uma classe rara (5,0%), a análise se apoia em **taxa de fraude** (a média da coluna `fraude`), e não em contagem absoluta — que favoreceria apenas os segmentos maiores. Ao comparar grupos, aplica-se um piso mínimo de volume para evitar conclusões sobre amostras pequenas demais. A exceção deliberada é a análise por faixa de valor, em que taxa de fraude e **valor absoluto em reais** são reportados lado a lado: sem isso, não se enxerga que "onde está o risco" e "onde está o dinheiro" não coincidem. Todas as queries estão no arquivo [`sql/queries_analiticas.sql`](../sql/queries_analiticas.sql) que acompanha este relatório.
 
-> **Nota de qualidade de dados.** A segmentação por faixa de valor usa `CASE` com `ELSE` para a faixa mais alta; como `NULL < 500` não é verdadeiro em SQL, eventuais `valor_compra` nulos caem na faixa "acima de R$ 500". Recomenda-se checar `COUNT(*) WHERE valor_compra IS NULL` e isolar nulos numa faixa própria antes de reportar essa fatia como uma tese fechada.
-
 ---
 
 ## 3. Panorama do problema

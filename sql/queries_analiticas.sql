@@ -1,7 +1,6 @@
 /* =====================================================================
    ANÁLISE DE FRAUDE EM TRANSAÇÕES — queries analíticas
    Base: abt_fraude (150.000 linhas × 20 colunas), grão = 1 transação
-   Dialeto: BigQuery (GoogleSQL / Standard SQL)
    Notas de portabilidade ao final do arquivo.
    ===================================================================== */
 
@@ -18,7 +17,7 @@ SELECT
     ROUND(SUM(CASE WHEN fraude = 1 THEN valor_compra ELSE 0 END), 2)  AS valor_exposto,
     ROUND(AVG(CASE WHEN fraude = 1 THEN valor_compra END), 2)         AS ticket_medio_fraude,
     ROUND(AVG(valor_compra), 2)                                       AS ticket_medio_geral
-FROM `unipds-503513.projeto_fraude.abt_fraude`;
+FROM `unipds-sql.projeto_fraude.abt_fraude`;
 -- Resultado: 150000 | 7500 | 5.000% | R$547.271,12 | R$72,97 | R$43,52
 
 
@@ -31,8 +30,8 @@ SELECT
     p.regiao,
     COUNT(*)                       AS transacoes,
     ROUND(100.0*AVG(a.fraude), 2)  AS taxa_fraude_pct
-FROM `unipds-503513.projeto_fraude.abt_fraude` a
-JOIN `unipds-503513.projeto_fraude.dim_paises` p ON p.sigla_pais = a.pais
+FROM `unipds-sql.projeto_fraude.abt_fraude` a
+JOIN `unipds-sql.projeto_fraude.dim_paises` p ON p.sigla_pais = a.pais
 GROUP BY p.nome_pais, p.regiao
 HAVING COUNT(*) >= 1000
 ORDER BY taxa_fraude_pct DESC;
@@ -43,7 +42,7 @@ SELECT
     pais,
     COUNT(*)                     AS transacoes,
     ROUND(100.0*AVG(fraude), 2)  AS taxa_fraude_pct
-FROM `unipds-503513.projeto_fraude.abt_fraude`
+FROM `unipds-sql.projeto_fraude.abt_fraude`
 GROUP BY pais
 HAVING COUNT(*) >= 1000
 ORDER BY taxa_fraude_pct DESC;
@@ -57,8 +56,8 @@ SELECT
     c.nivel_risco_categoria,
     COUNT(*)                       AS transacoes,
     ROUND(100.0*AVG(a.fraude), 2)  AS taxa_fraude_pct
-FROM `unipds-503513.projeto_fraude.abt_fraude` a
-JOIN `unipds-503513.projeto_fraude.dim_categorias` c ON c.id_categoria = a.categoria_produto
+FROM `unipds-sql.projeto_fraude.abt_fraude` a
+JOIN `unipds-sql.projeto_fraude.dim_categorias` c ON c.id_categoria = a.categoria_produto
 GROUP BY c.nivel_risco_categoria
 ORDER BY taxa_fraude_pct DESC;
 
@@ -74,11 +73,11 @@ WITH base AS (
       WHEN valor_compra < 100 THEN '1) ate 100'
       WHEN valor_compra < 500 THEN '2) 100-500'
       WHEN valor_compra >= 500 THEN '3) acima de 500'
-      ELSE                          '4) valor NULL'   -- separa nulos em vez de escondê-los na faixa 3
+      ELSE                          '4) valor NULL'   
     END AS faixa_valor,
     fraude,
     valor_compra
-  FROM `unipds-503513.capstone_fraude.abt_fraude`
+  FROM `unipds-sql.capstone_fraude.abt_fraude`
 )
 
 SELECT
@@ -108,7 +107,7 @@ WITH faixas AS (
     SELECT
         fraude,
         NTILE(10) OVER (ORDER BY score_fraude_modelo) AS decil
-    FROM `unipds-503513.projeto_fraude.abt_fraude`
+    FROM `unipds-sql.projeto_fraude.abt_fraude`
 )
 SELECT
     decil,
@@ -130,7 +129,7 @@ WITH faixas AS (
     SELECT
         fraude,
         NTILE(10) OVER (ORDER BY score_fraude_modelo DESC) AS decil_desc
-    FROM `unipds-503513.projeto_fraude.abt_fraude`
+    FROM `unipds-sql.projeto_fraude.abt_fraude`
 ),
 por_decil AS (
     SELECT decil_desc, SUM(fraude) AS fraudes
@@ -157,7 +156,7 @@ SELECT
     DATE_TRUNC(data_compra, MONTH)  AS mes,
     COUNT(*)                        AS transacoes,
     ROUND(100.0*AVG(fraude), 2)     AS taxa_fraude_pct
-FROM `unipds-503513.projeto_fraude.abt_fraude`
+FROM `unipds-sql.projeto_fraude.abt_fraude`
 GROUP BY mes
 ORDER BY mes;
 -- 2020-03: 5,04% (76.961) | 2020-04: 4,96% (73.039) — sem sazonalidade nos 2 meses.

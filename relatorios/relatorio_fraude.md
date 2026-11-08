@@ -9,7 +9,7 @@
 
 ## 1. Sumário executivo
 
-A fraude nesta base é rara (5,0%), mas não é aleatória: concentra-se de forma previsível em dois eixos — o **valor da transação** e o **topo do score do modelo**. Isso abre uma oportunidade direta de operação: priorizar a revisão por esses eixos ataca a maior parte da perda com o menor esforço. Os cinco achados centrais:
+A fraude nesta base é rara (5,0%), mas não é aleatória: concentra-se de forma previsível em dois eixos: o **valor da transação** e o **topo do score do modelo**. Isso abre uma oportunidade direta de operação: priorizar a revisão por esses eixos ataca a maior parte da perda com o menor esforço. Os cinco achados centrais:
 
 | Achado | Leitura |
 |---|---|

@@ -61,7 +61,6 @@ Olhar só a taxa é enganoso quando o objetivo é priorizar mitigação por real
 | R$ 100–500 | ~14% | ~43% | R$ 233 mil | ~R$ 226 |
 | acima de R$ 500 | ~2% | ~26% | R$ 144 mil | ~R$ 931 |
 
-> Percentuais de casos reconstruídos a partir das taxas de fraude arredondadas — servem para dimensionar a divergência entre casos e exposição, não como número contábil exato.
 
 Três leituras práticas saem dessa tabela:
 
